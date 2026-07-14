@@ -1,8 +1,15 @@
 import { useAuth } from "../context/AuthContext";
 import { checkIn } from "../services/attendanceService";
+import { askAI } from "../services/aiService";
+import AIChat from "../components/AIChat";
 
 function WorkerDashboard() {
   const { user } = useAuth();
+
+  const testAI = async () => {
+  const response = await askAI("Hello Backend!");
+
+  alert(response);};
 
   return (
     <div className="container">
@@ -14,7 +21,11 @@ function WorkerDashboard() {
 
       <button onClick={() => checkIn(user)}>
         Check In
-    </button>
+      </button>
+      <button onClick={testAI}>
+        Ask HealthGuardian AI
+      </button>
+    <AIChat />
     </div>
   );
 }
