@@ -11,30 +11,38 @@ import { db } from "../firebase/firebaseConfig";
 
 export const checkIn = async (user) => {
 
-  const today = new Date().toISOString().split("T")[0];
+  navigator.geolocation.getCurrentPosition(async (position) => {
 
-  const attendanceRef = collection(db, "attendance");
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
 
-  const q = query(
-    attendanceRef,
-    where("uid", "==", user.uid),
-    where("date", "==", today)
-  );
+    const today = new Date().toISOString().split("T")[0];
 
-  const snapshot = await getDocs(q);
+    const attendanceRef = collection(db, "attendance");
 
-  if (!snapshot.empty) {
-    alert("You have already checked in today.");
-    return;
-  }
+    const q = query(
+      attendanceRef,
+      where("uid", "==", user.uid),
+      where("date", "==", today)
+    );
 
-  await addDoc(attendanceRef, {
-    uid: user.uid,
-    name: user.displayName,
-    email: user.email,
-    date: today,
-    checkInTime: serverTimestamp(),
+    const snapshot = await getDocs(q);
+
+    if (!snapshot.empty) {
+      alert("Already checked in today.");
+      return;
+    }
+
+    await addDoc(attendanceRef, {
+      uid: user.uid,
+      name: user.displayName,
+      email: user.email,
+      date: today,
+      latitude,
+      longitude,
+      checkInTime: serverTimestamp(),
+    });
+
+    alert("Attendance marked successfully!");
   });
-
-  alert("Check-in successful!");
 };
