@@ -1,15 +1,8 @@
 import "./App.css";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
-  return (
-    <div className="container">
-      <h1>HealthGuardian AI</h1>
-
-      <p>AI-Powered Rural Healthcare Supervision</p>
-
-      <button>Get Started</button>
-    </div>
-  );
+  return <LandingPage />;
 }
 
 export default App;
