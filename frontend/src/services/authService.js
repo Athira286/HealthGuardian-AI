@@ -48,3 +48,8 @@ export const loginWithGoogle = async () => {
   }
 
 };
+import { signOut } from "firebase/auth";
+
+export const logout = async () => {
+  await signOut(auth);
+};

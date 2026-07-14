@@ -1,8 +1,15 @@
 import { loginWithGoogle } from "../services/authService";
+import { useAuth } from "../context/AuthContext";
+import WorkerDashboard from "./WorkerDashboard";
+
 function LandingPage() {
+  const { user, logout } = useAuth();
+
+  if (user) {
+  return <WorkerDashboard />;}
+
   return (
     <div className="container">
-
       <h1>HealthGuardian AI</h1>
 
       <h2>AI-Powered Rural Healthcare Supervision</h2>
@@ -13,34 +20,9 @@ function LandingPage() {
         and generate intelligent reports using AI agents.
       </p>
 
-      <div className="buttons">
-        <button onClick={loginWithGoogle}>
-            Login
-        </button>
-        <button className="secondary">
-          Learn More
-        </button>
-      </div>
-
-      <div className="features">
-
-        <div className="card">
-          <h3>📍 GPS Attendance</h3>
-          <p>Verify worker attendance using GPS.</p>
-        </div>
-
-        <div className="card">
-          <h3>🤖 AI Agents</h3>
-          <p>Detect fraud and generate insights.</p>
-        </div>
-
-        <div className="card">
-          <h3>📊 Analytics</h3>
-          <p>Visualize attendance and village coverage.</p>
-        </div>
-
-      </div>
-
+      <button onClick={loginWithGoogle}>
+        Login with Google
+      </button>
     </div>
   );
 }
