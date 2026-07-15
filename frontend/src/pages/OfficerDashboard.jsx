@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getDashboardStats } from "../services/dashboardService";
+import AttendanceChart from "../components/AttendanceChart";
 function OfficerDashboard() {
   const [stats, setStats] = useState({
     checked_in: 0,
@@ -64,6 +65,9 @@ function OfficerDashboard() {
         <li>Best performing PHC: Chromepet.</li>
         <li>Recommend assigning one worker to Village 9.</li>
       </ul>
+      <hr />
+      <h2>📊 Weekly Attendance</h2>
+      <AttendanceChart />
     </div>
   );
 }
