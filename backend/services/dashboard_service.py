@@ -1,14 +1,17 @@
 from firebase_config import db
 from datetime import date
 from collections import Counter
-from collections import Counter
+
+
 def get_dashboard_stats():
 
     today = str(date.today())
 
-    attendance_docs = db.collection("attendance") \
-        .where("date", "==", today) \
+    attendance_docs = (
+        db.collection("attendance")
+        .where("date", "==", today)
         .stream()
+    )
 
     checked_in = []
     villages = set()
@@ -27,7 +30,9 @@ def get_dashboard_stats():
             phcs.append(data["phc"])
 
     phc_counts = Counter(phcs)
+
     phc_distribution = []
+
     for phc, count in phc_counts.items():
         phc_distribution.append({
             "name": phc,
@@ -49,12 +54,41 @@ def get_dashboard_stats():
             f"{highest_phc} has the highest attendance ({phc_counts[highest_phc]} workers)."
         )
 
+    insights = []
+
+    if phc_counts:
+        highest = max(phc_counts, key=phc_counts.get)
+
+        insights.append(
+            f"{highest} recorded the highest attendance today."
+        )
+
+    if len(villages) >= 15:
+        insights.append(
+            "Excellent village coverage achieved today."
+        )
+    else:
+        insights.append(
+            "Several villages still require field visits."
+        )
+
+    if len(checked_in) >= 90:
+        insights.append(
+            "Overall workforce participation is excellent."
+        )
+    else:
+        insights.append(
+            "Attendance is below target today."
+        )
+
     return {
         "checked_in": len(checked_in),
         "villages": len(villages),
         "alerts": alerts,
+        "insights": insights,
         "phc_distribution": phc_distribution
     }
+
 
 def get_worker_locations():
 

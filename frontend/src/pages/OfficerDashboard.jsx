@@ -9,6 +9,7 @@ function OfficerDashboard() {
     checked_in: 0,
     villages: 0,
     alerts: [],
+    insights : [],
     phc_distribution: []
   });
 
@@ -90,9 +91,9 @@ function OfficerDashboard() {
       <h2>🤖 AI Insights</h2>
 
       <ul>
-        <li>Attendance increased by 8% this week.</li>
-        <li>Best performing PHC: Chromepet.</li>
-        <li>Recommend assigning one worker to Village 9.</li>
+        {stats.insights.map((insight, index) => (
+          <li key={index}>{insight}</li>
+        ))}
       </ul>
 
       <hr />
