@@ -1,4 +1,19 @@
+import { useEffect, useState } from "react";
+import { getDashboardStats } from "../services/dashboardService";
 function OfficerDashboard() {
+  const [stats, setStats] = useState({
+    checked_in: 0,
+    villages: 0
+  });
+  useEffect(() => {
+    const fetchStats = async () => {
+      const data = await getDashboardStats();
+      setStats(data);
+
+    };
+
+    fetchStats();
+  }, []);
   return (
     <div style={{ padding: "40px" }}>
       <h1>🏥 District Medical Officer Dashboard</h1>
@@ -14,7 +29,7 @@ function OfficerDashboard() {
         </div>
 
         <div>
-          <h3>82</h3>
+          <h3>{stats.checked_in}</h3>
           <p>Checked In</p>
         </div>
 
@@ -24,7 +39,7 @@ function OfficerDashboard() {
         </div>
 
         <div>
-          <h3>24</h3>
+          <h3>{stats.villages}</h3>
           <p>Villages Covered</p>
         </div>
       </div>
