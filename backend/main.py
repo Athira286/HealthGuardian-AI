@@ -9,6 +9,7 @@ from services.attendance_service import (
     get_today_attendance,
     get_today_count
 )
+from agents.supervisor_agent import handle as supervisor_agent
 
 load_dotenv()
 
@@ -36,25 +37,11 @@ def home():
 @app.post("/ask-ai")
 def ask_ai(prompt: Prompt):
 
-    question = prompt.question.lower()
-    if "how many" in question or "count" in question:
-        count = get_today_count()
+    agent_response = supervisor_agent(prompt.question)
+
+    if agent_response:
         return {
-            "answer": f"{count} health workers checked in today."
-        }
-
-    if "checked in" in question or "attendance" in question:
-
-        workers = get_today_attendance()
-
-        if len(workers) == 0:
-
-            return {
-                "answer": "No health workers have checked in today."
-            }
-
-        return {
-            "answer": "Today's attendance:\n\n" + "\n".join(workers)
+            "answer": agent_response
         }
 
     response = client.models.generate_content(
