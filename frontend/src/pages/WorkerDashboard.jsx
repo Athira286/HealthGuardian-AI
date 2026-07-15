@@ -7,60 +7,69 @@ function WorkerDashboard() {
     const { user } = useAuth();
 
     return (
+  <div
+    style={{
+      minHeight: "100vh",
+      background: "#0f172a",
+      padding: "50px 0",
+    }}
+  >
+    <div
+      style={{
+        width: "90%",
+        maxWidth: "1200px",
+        margin: "0 auto",
+      }}
+    >
+      <h1 style={{ textAlign: "center" }}>
+        👩‍⚕️ Health Worker Dashboard
+      </h1>
 
-<div className="page">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          marginTop: "40px",
+        }}
+      >
+        <img
+          src={user?.photoURL}
+          alt=""
+          style={{
+            width: 120,
+            height: 120,
+            borderRadius: "50%",
+            marginBottom: 20,
+          }}
+        />
 
-<div className="container">
+        <h2>{user?.displayName}</h2>
 
-<h1>👩‍⚕️ Health Worker Dashboard</h1>
+        <p>{user?.email}</p>
 
-<div className="card">
+        <button
+          onClick={() => checkIn(user)}
+          style={{
+            marginTop: 25,
+            padding: "14px 30px",
+            borderRadius: "12px",
+          }}
+        >
+            📍 Check In
+        </button>
+      </div>
 
-<img
-src={user?.photoURL}
-alt=""
-style={{
-width:"90px",
-height:"90px",
-borderRadius:"50%",
-marginBottom:"15px"
-}}
-/>
-
-<h2>{user?.displayName}</h2>
-
-<p>{user?.email}</p>
-
-<div style={{
-display:"flex",
-justifyContent:"center",
-gap:"15px",
-marginTop:"25px",
-marginBottom:"30px"
-}}>
-
-<button
-className="primary-btn"
-onClick={()=>checkIn(user)}
->
-📍 Check In
-</button>
-
-</div>
-
-</div>
-
-<div style={{marginTop:"35px"}}>
-
-<AIChat/>
-
-</div>
-
-</div>
-
-</div>
-
-    );
+      <div
+        style={{
+          marginTop: "70px",
+        }}
+      >
+        <AIChat />
+      </div>
+    </div>
+  </div>
+);
 
 }
 

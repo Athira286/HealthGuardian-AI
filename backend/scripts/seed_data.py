@@ -7,6 +7,15 @@ import random
 from datetime import date
 from firebase_config import db
 
+print("Removing previous attendance...")
+
+attendance_docs = db.collection("attendance").stream()
+
+for doc in attendance_docs:
+    doc.reference.delete()
+
+print("Generating today's attendance...")
+
 villages = [
     "Mudichur",
     "Irumbuliyur",
@@ -38,19 +47,22 @@ phcs = [
     "Thiruporur PHC"
 ]
 
+today = str(date.today())
+
 for i in range(1, 101):
 
     worker = {
         "uid": f"worker{i}",
         "name": f"Health Worker {i}",
         "email": f"worker{i}@health.ai",
-        "date": str(date.today()),
+        "date": today,
         "village": random.choice(villages),
         "phc": random.choice(phcs),
-        "latitude": 12.9 + random.random() / 10,
-        "longitude": 80.2 + random.random() / 10,
+        "latitude": round(random.uniform(12.82, 13.02), 6),
+        "longitude": round(random.uniform(80.08, 80.26), 6),
     }
 
     db.collection("attendance").add(worker)
 
-print("100 demo workers added successfully!")
+print("✅ Demo reset complete!")
+print("100 workers created for today.")
