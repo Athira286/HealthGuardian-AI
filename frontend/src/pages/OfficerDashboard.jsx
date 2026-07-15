@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { getDashboardStats } from "../services/dashboardService";
 import AttendanceChart from "../components/AttendanceChart";
+import PHCPieChart from "../components/PHCPieChart";
+
 function OfficerDashboard() {
   const [stats, setStats] = useState({
     checked_in: 0,
     villages: 0,
-    alerts: []
+    alerts: [],
+    phc_distribution: []
   });
   useEffect(() => {
     const fetchStats = async () => {
@@ -68,6 +71,10 @@ function OfficerDashboard() {
       <hr />
       <h2>📊 Weekly Attendance</h2>
       <AttendanceChart />
+
+      <hr />
+      <h2>🏥 PHC Attendance Distribution</h2>
+      <PHCPieChart data={stats.phc_distribution} />
     </div>
   );
 }

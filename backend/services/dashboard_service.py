@@ -1,7 +1,7 @@
 from firebase_config import db
 from datetime import date
 from collections import Counter
-
+from collections import Counter
 def get_dashboard_stats():
 
     today = str(date.today())
@@ -27,6 +27,12 @@ def get_dashboard_stats():
             phcs.append(data["phc"])
 
     phc_counts = Counter(phcs)
+    phc_distribution = []
+    for phc, count in phc_counts.items():
+        phc_distribution.append({
+            "name": phc,
+            "workers": count
+        })
 
     alerts = []
 
@@ -46,5 +52,6 @@ def get_dashboard_stats():
     return {
         "checked_in": len(checked_in),
         "villages": len(villages),
-        "alerts": alerts
+        "alerts": alerts,
+        "phc_distribution": phc_distribution
     }
