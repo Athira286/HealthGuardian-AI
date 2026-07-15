@@ -12,6 +12,7 @@ from services.attendance_service import (
 from agents.supervisor_agent import handle as supervisor_agent
 from services.dashboard_service import get_dashboard_stats
 from services.dashboard_service import get_worker_locations
+from services.briefing_service import get_morning_briefing
 
 load_dotenv()
 
@@ -59,6 +60,12 @@ def ask_ai(prompt: Prompt):
 def dashboard():
 
     return get_dashboard_stats()
+
+@app.get("/briefing")
+def briefing():
+    return {
+        "briefing": get_morning_briefing()
+    }
 
 @app.get("/worker-locations")
 def worker_locations():

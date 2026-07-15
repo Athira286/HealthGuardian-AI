@@ -11,15 +11,22 @@ function OfficerDashboard() {
     alerts: [],
     phc_distribution: []
   });
+
+  const [briefing, setBriefing] = useState("");
+
   useEffect(() => {
     const fetchStats = async () => {
       const data = await getDashboardStats();
       setStats(data);
-
     };
 
     fetchStats();
+
+    fetch("http://127.0.0.1:8000/briefing")
+      .then((res) => res.json())
+      .then((data) => setBriefing(data.briefing));
   }, []);
+
   return (
     <div style={{ padding: "40px" }}>
       <h1>🏥 District Medical Officer Dashboard</h1>
@@ -52,6 +59,24 @@ function OfficerDashboard() {
 
       <hr />
 
+      <h2>🧠 Morning AI Briefing</h2>
+
+      <pre
+        style={{
+          whiteSpace: "pre-wrap",
+          fontFamily: "inherit",
+          fontSize: "18px",
+          border: "1px solid #444",
+          borderRadius: "10px",
+          padding: "20px",
+          backgroundColor: "#1f1f1f",
+        }}
+      >
+        {briefing}
+      </pre>
+
+      <hr />
+
       <h2>🚨 AI Alerts</h2>
 
       <ul>
@@ -69,6 +94,7 @@ function OfficerDashboard() {
         <li>Best performing PHC: Chromepet.</li>
         <li>Recommend assigning one worker to Village 9.</li>
       </ul>
+
       <hr />
 
       <h2>📊 Weekly Attendance</h2>
@@ -78,7 +104,7 @@ function OfficerDashboard() {
       <hr />
 
       <h2>🏥 PHC Attendance Distribution</h2>
-      
+
       <PHCPieChart data={stats.phc_distribution} />
 
       <hr />
