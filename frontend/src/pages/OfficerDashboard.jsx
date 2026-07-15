@@ -3,7 +3,8 @@ import { getDashboardStats } from "../services/dashboardService";
 function OfficerDashboard() {
   const [stats, setStats] = useState({
     checked_in: 0,
-    villages: 0
+    villages: 0,
+    alerts: []
   });
   useEffect(() => {
     const fetchStats = async () => {
@@ -49,9 +50,9 @@ function OfficerDashboard() {
       <h2>🚨 AI Alerts</h2>
 
       <ul>
-        <li>PHC - Tambaram has low attendance.</li>
-        <li>Village 12 has no health worker today.</li>
-        <li>6 workers haven't checked in.</li>
+        {stats.alerts.map((alert, index) => (
+          <li key={index}>{alert}</li>
+        ))}
       </ul>
 
       <hr />

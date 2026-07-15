@@ -1,5 +1,6 @@
 from firebase_config import db
 from datetime import date
+from collections import Counter
 
 def get_dashboard_stats():
 
@@ -10,8 +11,8 @@ def get_dashboard_stats():
         .stream()
 
     checked_in = []
-
     villages = set()
+    phcs = []
 
     for doc in attendance_docs:
 
@@ -22,7 +23,28 @@ def get_dashboard_stats():
         if "village" in data:
             villages.add(data["village"])
 
+        if "phc" in data:
+            phcs.append(data["phc"])
+
+    phc_counts = Counter(phcs)
+
+    alerts = []
+
+    if phc_counts:
+
+        lowest_phc = min(phc_counts, key=phc_counts.get)
+        highest_phc = max(phc_counts, key=phc_counts.get)
+
+        alerts.append(
+            f"{lowest_phc} has the lowest attendance ({phc_counts[lowest_phc]} workers)."
+        )
+
+        alerts.append(
+            f"{highest_phc} has the highest attendance ({phc_counts[highest_phc]} workers)."
+        )
+
     return {
         "checked_in": len(checked_in),
-        "villages": len(villages)
+        "villages": len(villages),
+        "alerts": alerts
     }
