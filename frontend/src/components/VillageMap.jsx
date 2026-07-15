@@ -1,28 +1,14 @@
+import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 function VillageMap() {
-  const villages = [
-    {
-      name: "Tambaram PHC",
-      lat: 12.9249,
-      lng: 80.1000,
-    },
-    {
-      name: "Chromepet PHC",
-      lat: 12.9516,
-      lng: 80.1462,
-    },
-    {
-      name: "Guduvanchery PHC",
-      lat: 12.8453,
-      lng: 80.0605,
-    },
-    {
-      name: "Kelambakkam PHC",
-      lat: 12.7868,
-      lng: 80.2217,
-    },
-  ];
+  const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/worker-locations")
+      .then((res) => res.json())
+      .then((data) => setLocations(data));
+  }, []);
 
   return (
     <MapContainer
@@ -34,12 +20,18 @@ function VillageMap() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {villages.map((village, index) => (
+      {locations.map((worker, index) => (
         <Marker
           key={index}
-          position={[village.lat, village.lng]}
+          position={[worker.latitude, worker.longitude]}
         >
-          <Popup>{village.name}</Popup>
+          <Popup>
+            <strong>{worker.name}</strong>
+            <br />
+            {worker.village}
+            <br />
+            {worker.phc}
+          </Popup>
         </Marker>
       ))}
     </MapContainer>

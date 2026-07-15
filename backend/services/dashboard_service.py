@@ -55,3 +55,29 @@ def get_dashboard_stats():
         "alerts": alerts,
         "phc_distribution": phc_distribution
     }
+
+def get_worker_locations():
+
+    today = str(date.today())
+
+    attendance_docs = (
+        db.collection("attendance")
+        .where("date", "==", today)
+        .stream()
+    )
+
+    locations = []
+
+    for doc in attendance_docs:
+
+        data = doc.to_dict()
+
+        locations.append({
+            "name": data.get("name"),
+            "village": data.get("village"),
+            "phc": data.get("phc"),
+            "latitude": data.get("latitude"),
+            "longitude": data.get("longitude"),
+        })
+
+    return locations
