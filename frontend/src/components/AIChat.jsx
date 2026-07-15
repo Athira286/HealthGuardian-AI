@@ -28,7 +28,20 @@ function AIChat() {
         Ask AI
       </button>
 
-      <p>{answer}</p>
+      <pre
+        style={{
+          whiteSpace: "pre-wrap",
+          textAlign: "left",
+          background: "#1f2937",
+          padding: "20px",
+          borderRadius: "12px",
+          color: "white",
+          fontSize: "16px",
+          marginTop: "20px",
+        }}
+      >
+        {answer}
+      </pre>
     </div>
   );
 }

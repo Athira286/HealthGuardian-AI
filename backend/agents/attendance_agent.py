@@ -12,8 +12,11 @@ def handle(question: str):
         count = get_today_count()
         return f"{count} health workers checked in today."
 
-    if "attendance" in question or "checked in" in question:
-
+    if (
+        "attendance" in question
+        or "checked in" in question
+        or question == "attendance"):
+        
         workers = get_today_attendance()
 
         if len(workers) == 0:
