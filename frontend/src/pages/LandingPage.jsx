@@ -1,11 +1,16 @@
 import { loginWithGoogle } from "../services/authService";
 import { useAuth } from "../context/AuthContext";
 import WorkerDashboard from "./WorkerDashboard";
+import OfficerDashboard from "./OfficerDashboard";
 
 function LandingPage() {
-  const { user } = useAuth();
+  const { user, role } = useAuth();
 
   if (user) {
+    if (role === "officer") {
+        return <OfficerDashboard />;
+    }
+
     return <WorkerDashboard />;
   }
 

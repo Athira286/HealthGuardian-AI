@@ -9,8 +9,8 @@ function OfficerDashboard() {
     checked_in: 0,
     villages: 0,
     alerts: [],
-    insights : [],
-    phc_distribution: []
+    insights: [],
+    phc_distribution: [],
   });
 
   const [briefing, setBriefing] = useState("");
@@ -29,90 +29,104 @@ function OfficerDashboard() {
   }, []);
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h1>🏥 District Medical Officer Dashboard</h1>
+    <div className="page">
+      <div className="container">
 
-      <hr />
+        <h1>🏥 District Command Center</h1>
 
-      <h2>Today's Overview</h2>
+        <hr />
 
-      <div style={{ display: "flex", gap: "30px", marginTop: "20px" }}>
-        <div>
-          <h3>100</h3>
-          <p>Total Workers</p>
+        <h2 className="section-title">Today's Overview</h2>
+
+        <div className="grid-2">
+
+          <div className="card">
+            <h3>100</h3>
+            <p>Total Workers</p>
+          </div>
+
+          <div className="card">
+            <h3>{stats.checked_in}</h3>
+            <p>Checked In</p>
+          </div>
+
+          <div className="card">
+            <h3>18</h3>
+            <p>Absent</p>
+          </div>
+
+          <div className="card">
+            <h3>{stats.villages}</h3>
+            <p>Villages Covered</p>
+          </div>
+
         </div>
 
-        <div>
-          <h3>{stats.checked_in}</h3>
-          <p>Checked In</p>
+        <hr />
+
+        <h2 className="section-title">🧠 Morning AI Briefing</h2>
+
+        <div
+          className="card"
+          style={{
+            whiteSpace: "pre-wrap",
+            fontSize: "18px",
+            textAlign: "left",
+            lineHeight: "1.8",
+          }}
+        >
+          {briefing}
         </div>
 
-        <div>
-          <h3>18</h3>
-          <p>Absent</p>
+        <hr />
+
+        <h2 className="section-title">🚨 AI Alerts</h2>
+
+        <div className="card">
+          <ul>
+            {stats.alerts.map((alert, index) => (
+              <li key={index}>{alert}</li>
+            ))}
+          </ul>
         </div>
 
-        <div>
-          <h3>{stats.villages}</h3>
-          <p>Villages Covered</p>
+        <hr />
+
+        <h2 className="section-title">🤖 AI Insights</h2>
+
+        <div className="card">
+          <ul>
+            {stats.insights.map((insight, index) => (
+              <li key={index}>{insight}</li>
+            ))}
+          </ul>
         </div>
+
+        <hr />
+
+        <h2 className="section-title">📊 Weekly Attendance</h2>
+
+        <div className="card">
+          <AttendanceChart />
+        </div>
+
+        <hr />
+
+        <h2 className="section-title">🏥 PHC Attendance Distribution</h2>
+
+        <div className="card">
+          <PHCPieChart data={stats.phc_distribution} />
+        </div>
+
+        <hr />
+
+        <h2 className="section-title">🗺️ PHC Coverage Map</h2>
+
+        <div className="card">
+          <VillageMap />
+        </div>
+
       </div>
-
-      <hr />
-
-      <h2>🧠 Morning AI Briefing</h2>
-
-      <pre
-        style={{
-          whiteSpace: "pre-wrap",
-          fontFamily: "inherit",
-          fontSize: "18px",
-          border: "1px solid #444",
-          borderRadius: "10px",
-          padding: "20px",
-          backgroundColor: "#1f1f1f",
-        }}
-      >
-        {briefing}
-      </pre>
-
-      <hr />
-
-      <h2>🚨 AI Alerts</h2>
-
-      <ul>
-        {stats.alerts.map((alert, index) => (
-          <li key={index}>{alert}</li>
-        ))}
-      </ul>
-
-      <hr />
-
-      <h2>🤖 AI Insights</h2>
-
-      <ul>
-        {stats.insights.map((insight, index) => (
-          <li key={index}>{insight}</li>
-        ))}
-      </ul>
-
-      <hr />
-
-      <h2>📊 Weekly Attendance</h2>
-
-      <AttendanceChart />
-
-      <hr />
-
-      <h2>🏥 PHC Attendance Distribution</h2>
-
-      <PHCPieChart data={stats.phc_distribution} />
-
-      <hr />
-
-      <h2>🗺️ PHC Coverage Map</h2>
-
-      <VillageMap />
     </div>
   );
 }
