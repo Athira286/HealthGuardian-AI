@@ -10,6 +10,7 @@ from services.attendance_service import (
     get_today_count
 )
 from agents.supervisor_agent import handle as supervisor_agent
+from services.dashboard_service import get_dashboard_stats
 
 load_dotenv()
 
@@ -52,3 +53,8 @@ def ask_ai(prompt: Prompt):
     return {
         "answer": response.text
     }
+@app.get("/dashboard")
+
+def dashboard():
+
+    return get_dashboard_stats()
