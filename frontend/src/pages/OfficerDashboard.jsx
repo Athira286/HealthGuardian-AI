@@ -1,5 +1,55 @@
 function OfficerDashboard() {
-  return <h1>Officer Dashboard</h1>;
+  return (
+    <div style={{ padding: "40px" }}>
+      <h1>🏥 District Medical Officer Dashboard</h1>
+
+      <hr />
+
+      <h2>Today's Overview</h2>
+
+      <div style={{ display: "flex", gap: "30px", marginTop: "20px" }}>
+        <div>
+          <h3>100</h3>
+          <p>Total Workers</p>
+        </div>
+
+        <div>
+          <h3>82</h3>
+          <p>Checked In</p>
+        </div>
+
+        <div>
+          <h3>18</h3>
+          <p>Absent</p>
+        </div>
+
+        <div>
+          <h3>24</h3>
+          <p>Villages Covered</p>
+        </div>
+      </div>
+
+      <hr />
+
+      <h2>🚨 AI Alerts</h2>
+
+      <ul>
+        <li>PHC - Tambaram has low attendance.</li>
+        <li>Village 12 has no health worker today.</li>
+        <li>6 workers haven't checked in.</li>
+      </ul>
+
+      <hr />
+
+      <h2>🤖 AI Insights</h2>
+
+      <ul>
+        <li>Attendance increased by 8% this week.</li>
+        <li>Best performing PHC: Chromepet.</li>
+        <li>Recommend assigning one worker to Village 9.</li>
+      </ul>
+    </div>
+  );
 }
 
 export default OfficerDashboard;
