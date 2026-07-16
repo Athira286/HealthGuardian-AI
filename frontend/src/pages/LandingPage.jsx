@@ -102,19 +102,6 @@ function LandingPage() {
               Login with Google
             </button>
 
-            <button
-              onClick={() => navigate("/demo")}
-              style={{
-                background: "#10b981",
-                color: "white",
-                padding: "18px 38px",
-                borderRadius: "14px",
-                fontSize: "18px",
-                fontWeight: "600",
-              }}
-            >
-              Try Live Demo
-            </button>
 
             <button
               onClick={loginAsGuest}
