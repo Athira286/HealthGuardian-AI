@@ -24,7 +24,10 @@ function AttendanceChart() {
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
-        <Bar dataKey="attendance" />
+        <Bar 
+           dataKey="attendance" 
+           fill="#FACC15" 
+        />
       </BarChart>
     </ResponsiveContainer>
   );
