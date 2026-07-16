@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { getDashboardStats } from "../services/dashboardService";
 import AttendanceChart from "../components/AttendanceChart";
 import PHCPieChart from "../components/PHCPieChart";
 import VillageMap from "../components/VillageMap";
 
 function OfficerDashboard() {
+  const { logout } = useAuth();
   const [stats, setStats] = useState({
     checked_in: 0,
     villages: 0,
@@ -33,6 +35,23 @@ function OfficerDashboard() {
       <div className="container">
 
         <h1>🏥 District Command Center</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: "20px",
+          }}
+        >
+          <button
+            className="primary-btn"
+            onClick={logout}
+            style={{
+              background: "#dc2626",
+            }}
+          >
+            Logout
+          </button>
+        </div>
 
         <hr />
 
