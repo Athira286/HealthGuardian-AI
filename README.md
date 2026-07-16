@@ -41,7 +41,3 @@ assets/
 ## 📸 Screenshots
 
 Coming soon.
-
-## 👩‍💻 Developed for
-
-Google Agentic AI Competition
