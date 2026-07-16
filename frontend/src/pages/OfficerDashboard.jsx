@@ -70,7 +70,7 @@ function OfficerDashboard() {
           </div>
 
           <div className="card">
-            <h3>18</h3>
+            <h3>{100 - stats.checked_in}</h3>
             <p>Absent</p>
           </div>
 
