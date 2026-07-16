@@ -5,6 +5,8 @@ import LoginPage from "./pages/LoginPage";
 import WorkerDashboard from "./pages/WorkerDashboard";
 import OfficerDashboard from "./pages/OfficerDashboard";
 import NotFound from "./pages/NotFound";
+import DemoDashboard from "./pages/DemoDashboard";
+<Route path="/demo" element={<DemoDashboard />} />
 
 function App() {
   return (

@@ -10,6 +10,7 @@ export function AuthProvider({ children }) {
 
   const [user, setUser] = useState(null);
   const [role, setRole] = useState(null);
+  const [guest, setGuest] = useState(false);
 
   const [loading, setLoading] = useState(true);
 
@@ -19,17 +20,18 @@ export function AuthProvider({ children }) {
 
       if (!currentUser) {
 
-        setUser(null);
-        setRole(null);
-        setLoading(false);
+        if (!guest) {
+          setUser(null);
+          setRole(null);
+        }
 
+        setLoading(false);
         return;
       }
 
       setUser(currentUser);
 
       const userRef = doc(db, "users", currentUser.uid);
-
       const userSnap = await getDoc(userRef);
 
       if (userSnap.exists()) {
@@ -42,9 +44,24 @@ export function AuthProvider({ children }) {
 
     return unsubscribe;
 
-  }, []);
+  }, [guest]);
 
-  const logout = () => signOut(auth);
+  const loginAsGuest = () => {
+    setGuest(true);
+    setRole("officer");
+  };
+
+  const logout = async () => {
+
+    if (guest) {
+      setGuest(false);
+      setRole(null);
+      return;
+    }
+
+    await signOut(auth);
+
+  };
 
   return (
 
@@ -52,6 +69,8 @@ export function AuthProvider({ children }) {
       value={{
         user,
         role,
+        guest,
+        loginAsGuest,
         logout,
       }}
     >

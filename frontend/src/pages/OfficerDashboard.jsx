@@ -6,7 +6,7 @@ import PHCPieChart from "../components/PHCPieChart";
 import VillageMap from "../components/VillageMap";
 
 function OfficerDashboard() {
-  const { logout } = useAuth();
+  const { logout, guest } = useAuth();
   const [stats, setStats] = useState({
     checked_in: 0,
     villages: 0,
@@ -34,7 +34,26 @@ function OfficerDashboard() {
     <div className="page">
       <div className="container">
 
-        <h1>🏥 District Command Center</h1>
+        <>
+          <h1>🏥 District Command Center</h1>
+          
+          {guest && (
+            <div
+              style={{
+                marginTop: "10px",
+                marginBottom: "20px",
+                background: "#facc15",
+                color: "#111827",
+                padding: "10px 18px",
+                borderRadius: "10px",
+                fontWeight: "600",
+                display: "inline-block",
+              }}
+            >
+              👀 Demo Mode (Read Only)
+            </div>
+          )}
+        </>
         <div
           style={{
             display: "flex",

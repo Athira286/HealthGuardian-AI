@@ -2,11 +2,13 @@ import { loginWithGoogle } from "../services/authService";
 import { useAuth } from "../context/AuthContext";
 import WorkerDashboard from "./WorkerDashboard";
 import OfficerDashboard from "./OfficerDashboard";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
-  const { user, role } = useAuth();
+  const { user, role, guest, loginAsGuest } = useAuth();
+  const navigate = useNavigate();
 
-  if (user) {
+  if (guest || user) {
     if (role === "officer") {
         return <OfficerDashboard />;
     }
@@ -83,6 +85,7 @@ function LandingPage() {
               marginTop: "40px",
               display: "flex",
               gap: "20px",
+              flexWrap: "wrap",
             }}
           >
             <button
@@ -100,17 +103,34 @@ function LandingPage() {
             </button>
 
             <button
+              onClick={() => navigate("/demo")}
               style={{
-                background: "rgba(255,255,255,.1)",
+                background: "#10b981",
                 color: "white",
-                border: "1px solid rgba(255,255,255,.25)",
                 padding: "18px 38px",
                 borderRadius: "14px",
                 fontSize: "18px",
+                fontWeight: "600",
               }}
             >
-              Learn More
+              Try Live Demo
             </button>
+
+            <button
+              onClick={loginAsGuest}
+              style={{
+                background: "#10b981",
+                color: "white",
+                padding: "18px 38px",
+                borderRadius: "14px",
+                fontSize: "18px",
+                fontWeight: "600",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              Continue as Guest
+</button>
           </div>
         </div>
 
