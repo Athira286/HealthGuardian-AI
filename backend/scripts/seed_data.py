@@ -49,7 +49,7 @@ phcs = [
 
 today = str(date.today())
 
-for i in range(1, 101):
+for i in range(1, 100):
 
     worker = {
         "uid": f"worker{i}",
@@ -65,4 +65,4 @@ for i in range(1, 101):
     db.collection("attendance").add(worker)
 
 print("✅ Demo reset complete!")
-print("100 workers created for today.")
+print("99 workers created for today.")
