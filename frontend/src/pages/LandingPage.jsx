@@ -117,8 +117,21 @@ function LandingPage() {
               }}
             >
               Continue as Guest
-</button>
+            </button>
           </div>
+          <p
+            style={{
+              marginTop: "20px",
+              color: "#bfdbfe",
+              fontSize: "16px",
+              lineHeight: "1.7",
+              maxWidth: "650px",
+            }}
+          >
+            💡 <strong>Demo:</strong> Explore the platform instantly using{" "}
+            <strong>Continue as Guest</strong>, or sign in with Google for the full
+            experience with role-based access.
+          </p>
         </div>
 
         {/* RIGHT */}
