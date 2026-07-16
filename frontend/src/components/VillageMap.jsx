@@ -5,7 +5,7 @@ function VillageMap() {
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/worker-locations")
+    fetch("https://healthguardian-ai-backend.onrender.com/worker-locations")
       .then((res) => res.json())
       .then((data) => setLocations(data));
   }, []);

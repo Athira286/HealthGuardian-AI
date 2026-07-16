@@ -23,7 +23,7 @@ function OfficerDashboard() {
 
     fetchStats();
 
-    fetch("http://127.0.0.1:8000/briefing")
+    fetch("https://healthguardian-ai-backend.onrender.com/briefing")
       .then((res) => res.json())
       .then((data) => setBriefing(data.briefing));
   }, []);
