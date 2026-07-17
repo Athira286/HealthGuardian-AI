@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="HealthGuardian AI Banner" width="100%">
+</p>
+
 # 🏥 HealthGuardian AI
 
 > **AI-Powered Rural Healthcare Supervision Platform**
@@ -97,31 +101,56 @@ Current AI features include:
 
 ## Landing Page
 
-*(Add screenshot)*
+<img src="assets/landing-page.png" width="100%">
+
+Modern landing page featuring Google Authentication and Guest Demo Mode for quick evaluation.
+
 
 ---
 
 ## Worker Dashboard
 
-*(Add screenshot)*
+<img src="assets/worker-dashboard.png" width="100%">
+
+Health workers can securely check in, automatically capture GPS location, and interact with the Gemini-powered AI assistant.
 
 ---
 
 ## Officer Dashboard
 
-*(Add screenshot)*
+<img src="assets/officer-dashboard.png" width="100%">
+
+Real-time district dashboard displaying attendance statistics, AI-generated morning briefing, analytics, charts, and operational insights.
+
+---
+
+## 🗺 Live Village Monitoring
+
+<img src="assets/Live-village-monitoring.png" width="100%">
+
+Interactive map visualizing the live locations of health workers across villages.
+
+---
+
+## 📊 Analytics Dashboard
+
+<img src="assets/Analytics1.png" width="100%">
+
+<img src="assets/Analytics2.png" width="100%">
+
+Weekly attendance trends and PHC-wise workforce distribution help officers quickly understand field operations.
 
 ---
 
 ## AI Assistant
 
-*(Add screenshot)*
+<img src="assets/AI-Assistant.png" width="100%">
 
----
+<img src="assets/AI-Assistant2.png" width="100%">
 
-## Interactive Analytics
+<img src="assets/AI-Assistant3.png" width="100%">
 
-*(Add screenshot)*
+Gemini-powered assistant capable of answering attendance questions and generating intelligent operational insights.
 
 ---
 
