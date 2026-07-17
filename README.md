@@ -219,7 +219,7 @@ Computer Science Engineering • AI • Data Science
 
 GitHub: https://github.com/Athira286
 
-LinkedIn: *(Add your LinkedIn URL)*
+LinkedIn: https://www.linkedin.com/in/athira-anish-a69530323/
 
 ---
 
