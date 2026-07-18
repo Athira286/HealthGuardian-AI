@@ -145,7 +145,7 @@ function OfficerDashboard() {
         <h2 className="section-title">📊 Weekly Attendance</h2>
 
         <div className="card">
-          <AttendanceChart />
+          <AttendanceChart checkedIn={stats.checked_in} />
         </div>
 
         <hr />
