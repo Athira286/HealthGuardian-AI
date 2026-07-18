@@ -47,6 +47,7 @@ export const checkIn = async (user) => {
       latitude,
       longitude,
       village: "Tambaram East",
+      phc: "Tambaram PHC",
       checkInTime: serverTimestamp(),
     });
 
